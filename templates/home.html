@@ -57,8 +57,13 @@
                 </ul>
             </div>
             <div class="user">
-                <h1>Welcome Shahadil Munawir</h1>
+                <h1>Welcome {{ name }}</h1>
+                <p>Your spendings: {{ spending }}</p>
+                <p>Your budget: {{ budget }}</p>
+                <p>You spend {{ percentage }}% of your budget</p>
+                <progress value="{{ percentage }}" max="100">{{ percentage }}%</progress>
             </div>
+        </div>
         </div>
     </body>
 </html>
