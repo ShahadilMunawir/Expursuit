@@ -12,4 +12,4 @@ def reset_password_view(request):
     return render(request, 'reset_password.html', context={})
 
 def home_view(request):
-    return render(request, 'home.html', context=context)
+    return render(request, 'home.html', context={})
