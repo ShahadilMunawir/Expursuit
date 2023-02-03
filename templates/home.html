@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <style>
+            body {
+                margin: 2px 2px 0px 2px;
+            }
+
+            h1.topbar {
+                text-align: center;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                width: 100%;
+                display: inline-block;
+                border: 1px solid black;
+                background-color: cadetblue;
+            }
+
+            .container {
+                display: flex;
+                background-color: cadetblue;
+                width: 200px;
+                border-radius: 0px 0px 20px 20px;
+            }
+
+            ul {
+                list-style: none;
+                padding-left: 15px;
+            }
+
+            .flex-container {
+                display: flex;
+            }
+
+            .flex-container > div.user {
+                margin-left: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="topbar">Expursuit</h1>
+        <div class="flex-container">
+            <div class="container">
+                <ul>
+                    <li><b>Administration</b></li>
+                    <ul class="main-header">
+                        <li>Dashboard</li>
+                        <li>Members</li>
+                    </ul>
+                    <li><b>Managements</b></li>
+                    <ul class="main-header">
+                        <li>Requests</li>
+                        <li>Invoices</li>
+                        <li>Trasactions</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="user">
+                <h1>Welcome Shahadil Munawir</h1>
+            </div>
+        </div>
+    </body>
+</html>
