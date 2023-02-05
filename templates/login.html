@@ -1,56 +1,8 @@
+{% load static %}
+
 <html>
 	<head>
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				background-color: #F2F2F2;
-				text-align: center;
-				padding: 50px;
-			}
-
-			h1 {
-				font-size: 36px;
-				color: #333;
-				margin-bottom: 50px;
-			}
-
-			form {
-				background-color: #FFFFFF;
-				padding: 50px;
-				box-shadow: 2px 2px 10px #333;
-				border-radius: 5px;
-				text-align: left;
-				max-width: 500px;
-				margin: auto;
-			}
-
-			input[type="text"], input[type="password"] {
-				padding: 10px;
-				font-size: 18px;
-				width: 100%;
-				margin-bottom: 20px;
-				border-radius: 5px;
-				border: 1px solid #CCC;
-			}
-
-			.btn {
-				padding: 10px 20px;
-				border-radius: 5px;
-				font-size: 18px;
-				color: #FFFFFF;
-				background-color: #006699;
-				margin-top: 0	px;
-				width: 120px;
-				display: inline-block;
-			}
-
-			a {
-				color: #006699;
-				font-size: 18px;
-				margin-top: 20px;
-				display: inline-block;
-			}
-		</style>
+		<link rel="stylesheet" href="{% static 'css/login_register/login_style.css' %}">
 	</head>
 	<body>
 		<h1>Login</h1>
