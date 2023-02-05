@@ -10,15 +10,3 @@ def signup_view(request):
 
 def reset_password_view(request):
     return render(request, 'reset_password.html', context={})
-
-def home_view(request):
-    spending = 10000
-    budget = 20000
-    percentage = int((spending/budget)*100)
-    context = {
-        "name": "Shahadil Munawir",
-        "spending": 10000,
-        "budget": 20000,
-        "percentage": percentage
-    }
-    return render(request, 'home.html', context=context)
