@@ -1,0 +1,32 @@
+body {
+    margin: 2px 2px 0px 2px;
+}
+
+h1.topbar {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    display: inline-block;
+    border: 1px solid black;
+    background-color: cadetblue;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.navbar {
+    background-color: cadetblue;
+    width: 200px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 15px;
+}
+
+.flex-container > div.user {
+    margin-left: 200px;
+}
