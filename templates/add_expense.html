@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Expense</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add Expense</h1>
+      <form action="#" method="post">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="groceries">Groceries</option>
+          <option value="rent">Rent</option>
+          <option value="transportation">Transportation</option>
+          <option value="entertainment">Entertainment</option>
+        </select>
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" name="amount" placeholder="Enter amount">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Enter description"></textarea>
+        <button type="submit">Add Expense</button>
+      </form>
+    </div>
+  </body>
+</html>
