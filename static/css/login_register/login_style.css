@@ -35,14 +35,14 @@ input[type="text"], input[type="password"] {
     border-radius: 5px;
     font-size: 18px;
     color: #FFFFFF;
-    background-color: #006699;
-    margin-top: 0	px;
+    background-color: green;
+    margin-top: 0px;
     width: 120px;
     display: inline-block;
 }
 
 a {
-    color: #006699;
+    color: green;
     font-size: 18px;
     margin-top: 20px;
     display: inline-block;
