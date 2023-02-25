@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update Profile</title>
+        <link rel="stylesheet" href="{% static 'css/home/update_style.css' %}">
+    </head>
+    <body>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="fullname">Full Name: </label>
+            <input type="text" name="fullname" id="fullname" value="{{ fullname }}">
+            <label for="username">Username: </label>
+            <input type="text" name="username" id="username" value="{{ username }}">
+            <label for="email">Email: </label>
+            <input type="text" name="email" id="email" value="{{ email }}">
+            <label for="budget">Budget: </label>
+            <input type="text" name="budget" id="budget" value="{{ budget }}">
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>
