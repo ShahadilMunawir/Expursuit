@@ -85,3 +85,44 @@ def add_expense_view(request: WSGIRequest):
         return redirect(home_view)
     else:
         return render(request, "add_expense.html", {})
+    
+def profile_view(request: WSGIRequest):
+    from login_register.views import login_view
+    if "userId" not in request.session:
+        return redirect(login_view)
+    else:
+        user = User.objects.filter(id=request.session["userId"]).values()[0]
+        context = {
+            "name": user["fullname"],
+            "username": user["username"],
+            "email": user["email"],
+            "budget": user["budget"]
+        }
+        return render(request, "profile.html", context)
+    
+def update_profile_view(request: WSGIRequest):
+    from login_register.views import login_view
+    if "userId" not in request.session:
+        return redirect(login_view)
+    
+    if request.method == "POST":
+        fullname = request.POST["fullname"]
+        username = request.POST["username"]
+        email = request.POST["email"]
+        budget = request.POST["budget"]
+
+        user = User.objects.get(id=request.session["userId"])
+        user.fullname = fullname
+        user.username = username
+        user.email = email
+        user.budget = budget
+        user.save()
+
+    user = User.objects.filter(id=request.session["userId"]).values()[0]
+    context = {
+        "fullname": user["fullname"],
+        "username": user["username"],
+        "email": user["email"],
+        "budget": user["budget"]
+    }
+    return render(request, "update.html", context)
