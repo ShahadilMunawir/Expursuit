@@ -14,89 +14,87 @@
         </style>
     </head>
     <body>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Expursuit</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                    </ul>
-                </div>
-                </nav>
-                <center>
-                <h1 style="color: white">Welcome {{ name }}</h1>
-                <div class="user">
-                    <div>
-                        <span>This month's spendings</span>
-                        <p style="font-size: 50px;">Your spendings: {{ total_amount }}</p>
-                    </div>
-                    <div>
-                        <span class="limit">Budget</span><br>
-                        <span><strong>{{ percentage }}%</strong></span><br>
-                        <progress value="{{ percentage }}" max="100">{{ percentage }}%</progress>
-                        <span>{{ budget_amount }}/ {{ budget }}</span>
-                    </div>
-                    <div>
-                        <a href="/add_expense"><button class="btn">
-                        <span>Add Expense</span>
-                        <br>
-                        <center><img src="{% static 'images/buttons/plus_btn.png' %}" alt="add expense button"></center>
-                        </a>
-                    </div>
-                    <div>
-                        <img src="{% static 'images/piecharts/fig.png' %}" alt="Expense chart">
-                    </div>
-                </div>
-            </center>
-            <center>
-                <form method="POST">
-                    {% csrf_token %}
-                    <select name="filter" id="filter">
-                        <option value="groceries">Groceries</option>
-                        <option value="rent">Rent</option>
-                        <option value="transportation">Transportation</option>
-                        <option value="entertainment">Entertainment</option>
-                        <option value="fuel">Fuel</option>
-                        <option value="electricity">Electricity</option>
-                    </select>
-                    <button type="submit">Filter</button>
-                </form>
-                <table class="table table-bordered" style="width: 800px;">
-                    <thead>
-                        <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Payment Type</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for spend in table_data %}
-                        <tr>
-                            <td>{{ spend.id }}</td>
-                            <td>{{ spend.amount }}</td>
-                            <td>{{ spend.category }}</td>
-                            <td>{{ spend.paymentType }}</td>
-                            <td>{{ spend.date }}</td>
-                            <td>{{ spend.description }}</td>
-                        </tr>
-                    {% endfor %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Expursuit</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+                </ul>
+            </div>
+        </nav>
+        <h1 style="color: white">Welcome {{ name }}</h1>
+        <div class="user">
+            <div>
+                <span>This month's spendings</span>
+                <p style="font-size: 50px;">Your spendings: {{ total_amount }}</p>
+            </div>
+            <div>
+                <span class="limit">Budget</span><br>
+                <span><strong>{{ percentage }}%</strong></span><br>
+                <progress value="{{ percentage }}" max="100">{{ percentage }}%</progress>
+                <span>{{ budget_amount }}/ {{ budget }}</span>
+            </div>
+            <div>
+                <a href="/add_expense"><button class="btn">
+                <span>Add Expense</span>
+                <br>
+                <center><img src="{% static 'images/buttons/plus_btn.png' %}" alt="add expense button"></center>
+                </a>
+            </div>
+            <div>
+                <img src="{% static 'images/piecharts/fig.png' %}" alt="Expense chart">
+            </div>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <select name="filter" id="filter">
+                <option value="groceries">Groceries</option>
+                <option value="rent">Rent</option>
+                <option value="transportation">Transportation</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="fuel">Fuel</option>
+                <option value="electricity">Electricity</option>
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+        <center>
+            <table class="table table-bordered" style="width: 800px;">
+                <thead>
                     <tr>
-                        <td colspan="5">Total</td>
-                        <td>{{ spending }}</td>
+                    <th scope="col">No</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Payment Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
                     </tr>
-                    </tbody>
-                    </table>
-            </center>
+                </thead>
+                <tbody>
+                {% for spend in table_data %}
+                    <tr>
+                        <td>{{ spend.id }}</td>
+                        <td>{{ spend.amount }}</td>
+                        <td>{{ spend.category }}</td>
+                        <td>{{ spend.paymentType }}</td>
+                        <td>{{ spend.date }}</td>
+                        <td>{{ spend.description }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="5">Total</td>
+                    <td>{{ spending }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </center>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
