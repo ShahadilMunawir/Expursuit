@@ -4,21 +4,31 @@
 <html>
   <head>
     <title>Add Expense</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home/add_expense_style.css' %}">
   </head>
   <body>
     <div class="container">
       <h1>Add Expense</h1>
-      <form action="#" method="post">
+      <form action="" method="POST">
+        {% csrf_token %}
         <label for="category">Category</label>
         <select id="category" name="category">
           <option value="groceries">Groceries</option>
           <option value="rent">Rent</option>
           <option value="transportation">Transportation</option>
           <option value="entertainment">Entertainment</option>
+          <option value="fuel">Fuel</option>
+          <option value="electricity">Electricity</option>
         </select>
         <label for="amount">Amount</label>
         <input type="text" id="amount" name="amount" placeholder="Enter amount">
+        <label for="payment-method">Payment Method</label>
+        <select name="payment-method" id="payment-method">
+          <option value="Google Pay">Google Pay</option>
+          <option value="Phone Pay">Phone Pay</option>
+          <option value="Credit Card">Credit Card</option>
+          <option value="Debit Card">Debit Card</option>
+        </select>
         <label for="date">Date</label>
         <input type="date" id="date" name="date">
         <label for="description">Description</label>
