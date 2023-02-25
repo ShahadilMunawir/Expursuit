@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from index.views import root_view
-from login_register.views import login_view, signup_view, reset_password_view, logout
+from login_register.views import login_view, signup_view, reset_password_view, logout_view
 from home.views import home_view, add_expense_view
 
 urlpatterns = [
@@ -27,6 +27,6 @@ urlpatterns = [
     path('login/', login_view),
     path('signup/', signup_view),
     path('reset_password', reset_password_view),
-    path('logout', logout),
+    path('logout', logout_view),
     path('add_expense', add_expense_view),
 ]
