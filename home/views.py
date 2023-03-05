@@ -36,11 +36,14 @@ def home_view(request: WSGIRequest):
         plt.title("Analytics")
         plt.tight_layout()
         plt.pie(slices, labels=labels, wedgeprops={"edgecolor": "black"}, autopct="%1.1f%%")
-        plt.savefig("/home/shahadil/Desktop/BACKUP/Expursuit/static/images/piecharts/fig.png", transparent=True)
+        plt.savefig("/home/shahadil/Desktop/Expursuit/static/images/piecharts/fig.png", transparent=True)
 
         if request.method == "POST":
             filter = request.POST["filter"]
-            expense = Expense.objects.filter(userId=request.session["userId"], category=filter).values()
+            if filter == "all":
+                expense = Expense.objects.filter(userId=request.session["userId"]).values()
+            else:
+                expense = Expense.objects.filter(userId=request.session["userId"], category=filter).values()
             index = len(expense)
             print(index)
             filter_spend = 0
