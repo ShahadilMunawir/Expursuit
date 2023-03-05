@@ -8,3 +8,4 @@ class User(models.Model):
     password = models.TextField()
     email = models.TextField()
     budget = models.TextField()
+    profilePicture = models.ImageField(null=True, blank=True, upload_to="images/")
