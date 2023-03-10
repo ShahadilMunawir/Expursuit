@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from index.views import root_view
 from login_register.views import login_view, signup_view, reset_password_view, logout_view
@@ -31,4 +33,4 @@ urlpatterns = [
     path('add_expense', add_expense_view),
     path('profile', profile_view),
     path('update', update_profile_view),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
