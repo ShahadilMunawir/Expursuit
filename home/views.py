@@ -79,7 +79,7 @@ def add_expense_view(request: WSGIRequest):
         paymentMethod = request.POST["payment-method"]
         date = request.POST["date"]
         description = request.POST["description"]
-
+        print(request.FILES, request.POST)
         expense = Expense(userId=request.session["userId"], category=category, amount=amount, paymentType=paymentMethod, date=date, description=description)
         expense.save()
         print("DATA SAVE IS A GO :@)")
@@ -99,7 +99,8 @@ def profile_view(request: WSGIRequest):
             "name": user["fullname"],
             "username": user["username"],
             "email": user["email"],
-            "budget": user["budget"]
+            "budget": user["budget"],
+            "profilePicture": user["profilePicture"]
         }
         return render(request, "profile.html", context)
     
