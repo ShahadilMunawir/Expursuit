@@ -12,6 +12,7 @@ def login_view(request: WSGIRequest):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
+
         if User.objects.filter(username=username, password=password):
             messages.success(request, f"{username} logged in")
             request.session["userId"] = User.objects.filter(username=username).values()[0]["id"]
@@ -28,9 +29,10 @@ def signup_view(request: WSGIRequest):
         password = request.POST["password"]
         email = request.POST["email"]
         budget = request.POST["budget"]
-
+        profilePicture = request.FILES["profile-picture"]
+        
         if not User.objects.filter(username=username):
-            user = User(fullname=fullname, username=username, password=password, email=email, budget=budget)
+            user = User(fullname=fullname, username=username, password=password, email=email, budget=budget, profilePicture=profilePicture)
             user.save()
             messages.success(request, f"{username} has been registered succesfully")
         else:
