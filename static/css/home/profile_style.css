@@ -44,6 +44,8 @@ main {
 .profile img {
 	border-radius: 50%;
 	margin-bottom: 10px;
+	width: 200px;
+	height: 200px;
 }
 
 .profile h2 {
