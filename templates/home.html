@@ -59,6 +59,7 @@
         <form method="POST">
             {% csrf_token %}
             <select name="filter" id="filter">
+                <option value="all">All</option>
                 <option value="groceries">Groceries</option>
                 <option value="rent">Rent</option>
                 <option value="transportation">Transportation</option>
