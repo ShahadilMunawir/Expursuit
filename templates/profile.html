@@ -15,25 +15,13 @@
 
 	<main>
 		<div class="profile">
-			<img src="profile.jpg" alt="Profile Picture">
+			<img src="{{ '../media/' }}{{ profilePicture }}">
 			<h2>{{ name }}</h2>
 			<p>Username: {{ username }}</p>
 			<p>Email: {{ email }}</p>
 			<p>Budget: {{ budget }}</p>
 			<a href="/update">Edit</a>
-			<!-- <p>Phone: 123-456-7890</p> -->
-			<!-- <p>Address: 123 Main St, Anytown, USA</p> -->
 		</div>
-
-		<!-- <div class="activity">
-			<h2>Activity</h2>
-			<ul>
-				<li><strong>12/01/2022</strong> - Attended Meeting</li>
-				<li><strong>11/15/2022</strong> - Completed Project</li>
-				<li><strong>10/20/2022</strong> - Started New Project</li>
-				<li><strong>09/30/2022</strong> - Completed Training Course</li>
-			</ul>
-		</div> -->
 	</main>
 
 	<footer>
