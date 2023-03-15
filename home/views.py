@@ -3,9 +3,10 @@ from django.core.handlers.wsgi import WSGIRequest
 from .models import Expense
 from login_register.models import User
 from matplotlib import pyplot as plt
+from django.contrib import messages
+from redmail import EmailSender
 
 # Create your views here.
-
 def home_view(request: WSGIRequest):
     from login_register.views import login_view
     if "userId" in request.session:
@@ -36,7 +37,7 @@ def home_view(request: WSGIRequest):
         plt.title("Analytics")
         plt.tight_layout()
         plt.pie(slices, labels=labels, wedgeprops={"edgecolor": "black"}, autopct="%1.1f%%")
-        plt.savefig("/home/shahadil/Desktop/Expursuit/static/images/piecharts/fig.png", transparent=True)
+        plt.savefig("../Expursuit/static/images/piecharts/fig.png", transparent=True)
 
         if request.method == "POST":
             filter = request.POST["filter"]
@@ -53,8 +54,36 @@ def home_view(request: WSGIRequest):
             total_spending = filter_spend
         else:
             budget_amount = total_spending
+
+        if request.session["showLimitAlert"]:
+            if percentage > 90:
+                messages.warning(request, f"You have used {percentage}% of your budget")
+
+                email = EmailSender(
+                    host="smtp.gmail.com", 
+                    port=587,
+                    username="shahadilmunawir110@gmail.com",
+                    password="hwhlzracvybpcbfs"
+                    )
+                email.send(
+                    subject="Limit Exceeded",
+                    sender="shahadilmunawir110@gmail.com",
+                    receivers=[user["email"]],
+                    html="""
+                        <center>
+                            <h1>Expurusit</h1>
+                            {{ my_image }}
+                            <p>You have used """ + str(percentage) + """% of your budget</p>
+                        </center>
+                    """,
+                    body_images={
+                        'my_image': '/home/shahadil/Desktop/Expursuit/static/images/piecharts/fig.png',
+                    }
+                )
+                request.session["showLimitAlert"] = False
+
         context = {
-            "name": user["fullname"],
+            "name": user["fullName"],
             "spending": total_spending,
             "budget": budget,
             "percentage": percentage,
@@ -79,7 +108,6 @@ def add_expense_view(request: WSGIRequest):
         paymentMethod = request.POST["payment-method"]
         date = request.POST["date"]
         description = request.POST["description"]
-        print(request.FILES, request.POST)
         expense = Expense(userId=request.session["userId"], category=category, amount=amount, paymentType=paymentMethod, date=date, description=description)
         expense.save()
         print("DATA SAVE IS A GO :@)")
@@ -96,7 +124,7 @@ def profile_view(request: WSGIRequest):
     else:
         user = User.objects.filter(id=request.session["userId"]).values()[0]
         context = {
-            "name": user["fullname"],
+            "name": user["fullName"],
             "username": user["username"],
             "email": user["email"],
             "budget": user["budget"],
@@ -116,7 +144,7 @@ def update_profile_view(request: WSGIRequest):
         budget = request.POST["budget"]
 
         user = User.objects.get(id=request.session["userId"])
-        user.fullname = fullname
+        user.fullName = fullname
         user.username = username
         user.email = email
         user.budget = budget
@@ -124,7 +152,7 @@ def update_profile_view(request: WSGIRequest):
 
     user = User.objects.filter(id=request.session["userId"]).values()[0]
     context = {
-        "fullname": user["fullname"],
+        "fullname": user["fullName"],
         "username": user["username"],
         "email": user["email"],
         "budget": user["budget"]
