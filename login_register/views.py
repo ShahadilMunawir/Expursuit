@@ -14,6 +14,8 @@ def login_view(request: WSGIRequest):
         username = request.POST["username"]
         password = request.POST["password"]
 
+        request.session["showLimitAlert"] = True
+
         if User.objects.filter(username=username):
             passwordHash = User.objects.filter(username=username)[0].passwordHash
             
@@ -30,7 +32,7 @@ def login_view(request: WSGIRequest):
     
 def signup_view(request: WSGIRequest):
     if request.method == "POST":
-        fullname = request.POST["fullname"]
+        fullName = request.POST["fullname"]
         username = request.POST["username"]
         password = request.POST["password"]
         email = request.POST["email"]
@@ -40,9 +42,11 @@ def signup_view(request: WSGIRequest):
         passwordHash = make_password(password)
 
         if not User.objects.filter(username=username):
-            user = User(fullname=fullname, username=username, passwordHash=passwordHash, email=email, budget=budget, profilePicture=profilePicture)
+            user = User(fullName=fullName, username=username, passwordHash=passwordHash, email=email, budget=budget, profilePicture=profilePicture)
             user.save()
             messages.success(request, f"{username} has been registered succesfully")
+
+            return redirect(signup_view)
         else:
             messages.warning(request, f"{username} already exists")
     return render(request, 'signup.html', context={})
