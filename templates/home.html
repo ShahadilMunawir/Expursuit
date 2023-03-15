@@ -14,6 +14,31 @@
         </style>
     </head>
     <body>
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "warning" %}
+                    <div id="myAlertBox" class="alertBox">
+                        <div class="alertBoxHeader">
+                          <h3>Heads Up</h3>
+                          <span id="closeAlertBox" class="closeAlertBox">&times;</span>
+                        </div>
+                        <div class="alertBoxContent">
+                          {{ message }}
+                        </div>
+                      </div>
+
+                      <script>
+                        var alertBox = document.getElementById("myAlertBox");
+                        var closeButton = document.getElementById("closeAlertBox");
+
+                        closeButton.onclick = function() {
+                        alertBox.style.display = "none";
+                        }
+                      </script>
+                      
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Expursuit</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
