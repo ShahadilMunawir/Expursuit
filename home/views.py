@@ -5,6 +5,7 @@ from login_register.models import User
 from matplotlib import pyplot as plt
 from django.contrib import messages
 from redmail import EmailSender
+import os
 
 # Create your views here.
 def home_view(request: WSGIRequest):
@@ -62,8 +63,8 @@ def home_view(request: WSGIRequest):
                 email = EmailSender(
                     host="smtp.gmail.com", 
                     port=587,
-                    username="shahadilmunawir110@gmail.com",
-                    password="hwhlzracvybpcbfs"
+                    username=os.environ.get("EXPURSUIT_SENDER_EMAIL"),
+                    password=os.environ.get("EXPURSUIT_APP_PASSWORD")
                     )
                 email.send(
                     subject="Limit Exceeded",
