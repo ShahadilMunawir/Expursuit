@@ -89,3 +89,75 @@ select {
   button[type="submit"]:hover {
     background-color: #3e8e41;
 }
+
+/* limit alertbox style */
+
+.alertBox {
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #f7f7f7;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.alertBoxHeader {
+  background-color: #24e56e;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.alertBoxContent {
+  padding: 20px;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+}
+
+.closeAlertBox {
+  cursor: pointer;
+  font-size: 24px;
+  color: #fff;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+select {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.submit-button {
+  margin-top: 5px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: green;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+label {
+  color: white;
+  padding: 10px;
+}
